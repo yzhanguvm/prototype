@@ -1,5 +1,16 @@
 <% provide(:title, 'Home') %>
+<div class="center hero-unit">
 <h1>Welcome to PubMedMiner</h1>
-<p>
+<h2>
 PubMedMiner: Mining and Visualizing MeSH-based Associations in <a href="http://www.ncbi.nlm.nih.gov/pubmed">PubMed</a>
-</p>
+</h2>
+<br>
+<form class="form-inline">
+  <input type="text" id="search" placeholder="Example query: asthma[mh] AND adult[mh]"/>
+  <input type="submit" value="Search PubMed" class="btn btn-primary" />
+</form>
+<br>
+<br>
+<%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+</div>
+
