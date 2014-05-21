@@ -15,5 +15,15 @@
 /log/*.log
 /tmp
 
+# Ignore other unneeded files.
+database.yml
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+
 # Ignore secure_token
 /config/initializers/secure_token.rb

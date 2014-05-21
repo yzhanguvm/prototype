@@ -27,3 +27,5 @@ doc/
 
 # Ignore secure_token
 /config/initializers/secure_token.rb
+
+/public/assets/*
