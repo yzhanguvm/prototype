@@ -80,4 +80,6 @@ Prototype::Application.configure do
 
   config.serve_static_assets = true
   config.assets.compile = true
+
+  config.assets.precompile += %w[active_admin.css active_admin.js]
 end
