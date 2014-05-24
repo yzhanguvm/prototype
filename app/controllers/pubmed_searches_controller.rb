@@ -29,7 +29,7 @@ class PubmedSearchesController < ApplicationController
 
   def destroy
     @pubmed_search.destroy
-    redirect_to root_url
+    redirect_to user_path(current_user)
   end
 
   private
