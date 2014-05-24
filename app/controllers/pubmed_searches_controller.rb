@@ -5,6 +5,7 @@ class PubmedSearchesController < ApplicationController
   def create
     if (signed_in?)
       @pubmed_search = current_user.pubmed_searches.build(pubmed_search_params)
+      @pubmed_search.pubmed_link = "http://www.ncbi.nlm.nih.gov/pubmed/?term=#{@pubmed_search.query}"
       if @pubmed_search.save
         redirect_to current_user
       else
@@ -17,6 +18,7 @@ class PubmedSearchesController < ApplicationController
         flash.now[:error] = "Invalid query."
         render 'static_pages/home'
       else
+        @pubmed_search.pubmed_link = "http://www.ncbi.nlm.nih.gov/pubmed/?term=#{@pubmed_search.query}"
         render 'show'
       end
     end
