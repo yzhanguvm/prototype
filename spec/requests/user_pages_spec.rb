@@ -91,10 +91,19 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:s1) { FactoryGirl.create(:pubmed_search, user: user, query: "Foo") }
+    let!(:s2) { FactoryGirl.create(:pubmed_search, user: user, query: "Bar") }
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe "pubmed_searches" do
+      it { should have_content(s1.query) }
+      it { should have_content(s2.query) }
+      it { should have_content(user.pubmed_searches.count) }
+    end
+
   end
 
   describe "edit" do

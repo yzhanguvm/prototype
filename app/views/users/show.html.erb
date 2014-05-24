@@ -8,4 +8,14 @@
       </h1>
     </section>
   </aside>
+
+  <div class="span8">
+    <% if @user.pubmed_searches.any? %>
+      <h3>Recent Searches (<%= @user.pubmed_searches.count %>)</h3>
+      <ol class="pubmed_searches">
+        <%= render @pubmed_searches %>
+      </ol>
+      <%= will_paginate @pubmed_searches %>
+    <% end %>
+  </div>
 </div>

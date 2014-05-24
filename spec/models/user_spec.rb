@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
+  it { should respond_to(:pubmed_searches) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -107,4 +108,29 @@ describe User do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
+
+  describe "pubmed_search associations" do
+
+    before { @user.save }
+    let!(:older_pubmed_search) do
+      FactoryGirl.create(:pubmed_search, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_pubmed_search) do
+      FactoryGirl.create(:pubmed_search, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right pubmed_searches in the right order" do
+      expect(@user.pubmed_searches.to_a).to eq [newer_pubmed_search, older_pubmed_search]
+    end
+
+    it "should destroy associated pubmed_searches" do
+      pubmed_searches = @user.pubmed_searches.to_a
+      @user.destroy
+      expect(pubmed_searches).not_to be_empty
+      pubmed_searches.each do |pubmed_search|
+        expect(PubmedSearch.where(id: pubmed_search.id)).to be_empty
+      end
+    end
+  end
+
 end

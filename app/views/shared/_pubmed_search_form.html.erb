@@ -1,0 +1,7 @@
+<%= form_for(@pubmed_search) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :query, placeholder: "Example query: asthma[mh] AND adult[mh]" %>
+  </div>
+  <%= f.submit "Search Pubmed", class: "btn btn-primary" %>
+<% end %>

@@ -15,5 +15,14 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    users = User.all(limit: 6)
+    50.times do
+      query = Faker::Lorem.sentence(5)
+      users.each do |user| 
+        user.pubmed_searches.create!(query: query, 
+                                     pubmed_link: "http://www.ncbi.nlm.nih.gov/pubmed/?term=#{query}")
+      end
+    end
   end
 end

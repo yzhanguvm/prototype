@@ -1,0 +1,15 @@
+<li>
+  <span class="query">
+    <a href="<%= pubmed_search.pubmed_link %>">
+      <%= pubmed_search.query %>
+    </a>
+  </span>
+  <span class="timestamp">
+    <%= time_ago_in_words(pubmed_search.created_at) %> ago.
+  </span>
+  <% if current_user?(pubmed_search.user) %>
+    <%= link_to "delete", pubmed_search, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: pubmed_search.query %>
+  <% end%>
+</li>

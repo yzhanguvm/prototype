@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523023115) do
+ActiveRecord::Schema.define(version: 20140523141623) do
+
+  create_table "pubmed_searches", force: true do |t|
+    t.integer  "user_id"
+    t.string   "query"
+    t.string   "pubmed_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pubmed_searches", ["user_id", "created_at"], name: "index_pubmed_searches_on_user_id_and_created_at"
 
   create_table "users", force: true do |t|
     t.string   "name"
